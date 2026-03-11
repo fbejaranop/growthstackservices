@@ -277,12 +277,6 @@
 
     .note { color: var(--muted); font-size: 12px; margin: 0; }
 
-    .note a {
-      color: var(--brand);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
     footer {
       margin-top: 28px;
       padding: 20px 0 34px;
@@ -444,8 +438,7 @@
             <input id="company" type="text" placeholder="Company" />
             <textarea id="message" placeholder="Briefly describe the process or system you want to improve." required></textarea>
             <button type="submit" class="btn primary">Send inquiry</button>
-            <p class="note">Prefer email directly? <a id="direct-email-link" href="mailto:team@growthstackservices.com">contact us here</a>.</p>
-            <p id="form-status" class="note" aria-live="polite"></p>
+            <p class="note">This opens your email client. Replace the email address in code to receive submissions.</p>
           </form>
         </article>
       </div>
@@ -466,21 +459,13 @@
       const company = document.getElementById("company").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      const to = "team@growthstackservices.com";
+      const to = "your-email@domain.com";
       const subject = encodeURIComponent("New inquiry — growthStackServices");
       const body = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}\n`
       );
 
-      const mailtoUrl = `mailto:${to}?subject=${subject}&body=${body}`;
-      const directLink = document.getElementById("direct-email-link");
-      const status = document.getElementById("form-status");
-
-      directLink.href = mailtoUrl;
-      directLink.textContent = to;
-      status.textContent = "Opening your email app… If nothing opens, use the email link above.";
-
-      window.location.href = mailtoUrl;
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       return false;
     }
   </script>
