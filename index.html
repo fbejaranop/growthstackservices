@@ -459,6 +459,11 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    const CONTACT_EMAIL = "team@growthstackservices.com";
+    const directLink = document.getElementById("direct-email-link");
+    directLink.href = `mailto:${CONTACT_EMAIL}`;
+    directLink.textContent = CONTACT_EMAIL;
+
     function sendEmail(event) {
       event.preventDefault();
       const name = document.getElementById("name").value.trim();
@@ -466,14 +471,13 @@
       const company = document.getElementById("company").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      const to = "team@growthstackservices.com";
+      const to = CONTACT_EMAIL;
       const subject = encodeURIComponent("New inquiry — growthStackServices");
       const body = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}\n`
       );
 
       const mailtoUrl = `mailto:${to}?subject=${subject}&body=${body}`;
-      const directLink = document.getElementById("direct-email-link");
       const status = document.getElementById("form-status");
 
       directLink.href = mailtoUrl;
