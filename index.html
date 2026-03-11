@@ -277,6 +277,12 @@
 
     .note { color: var(--muted); font-size: 12px; margin: 0; }
 
+    .note a {
+      color: var(--brand);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     footer {
       margin-top: 28px;
       padding: 20px 0 34px;
@@ -438,7 +444,8 @@
             <input id="company" type="text" placeholder="Company" />
             <textarea id="message" placeholder="Briefly describe the process or system you want to improve." required></textarea>
             <button type="submit" class="btn primary">Send inquiry</button>
-            <p class="note">This opens your email client. Replace the email address in code to receive submissions.</p>
+            <p class="note">Prefer direct email? Reach us at <a id="direct-email-link" href="mailto:team@growthstackservices.com">team@growthstackservices.com</a>.</p>
+            <p id="form-status" class="note" aria-live="polite"></p>
           </form>
         </article>
       </div>
@@ -452,6 +459,11 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    const CONTACT_EMAIL = "team@growthstackservices.com";
+    const directLink = document.getElementById("direct-email-link");
+    directLink.href = `mailto:${CONTACT_EMAIL}`;
+    directLink.textContent = CONTACT_EMAIL;
+
     function sendEmail(event) {
       event.preventDefault();
       const name = document.getElementById("name").value.trim();
@@ -459,13 +471,20 @@
       const company = document.getElementById("company").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      const to = "your-email@domain.com";
+      const to = CONTACT_EMAIL;
       const subject = encodeURIComponent("New inquiry — growthStackServices");
       const body = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}\n`
       );
 
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      const mailtoUrl = `mailto:${to}?subject=${subject}&body=${body}`;
+      const status = document.getElementById("form-status");
+
+      directLink.href = mailtoUrl;
+      directLink.textContent = to;
+      status.textContent = `Opening your email app… If nothing opens, email us directly at ${to}.`;
+
+      window.location.href = mailtoUrl;
       return false;
     }
   </script>
