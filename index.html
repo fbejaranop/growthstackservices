@@ -444,7 +444,7 @@
             <input id="company" type="text" placeholder="Company" />
             <textarea id="message" placeholder="Briefly describe the process or system you want to improve." required></textarea>
             <button type="submit" class="btn primary">Send inquiry</button>
-            <p class="note">Prefer direct email? <a id="direct-email-link" href="mailto:team@growthstackservices.com">team@growthstackservices.com</a>.</p>
+            <p class="note">Prefer direct email? Reach us at <a id="direct-email-link" href="mailto:team@growthstackservices.com">team@growthstackservices.com</a>.</p>
             <p id="form-status" class="note" aria-live="polite"></p>
           </form>
         </article>
@@ -478,7 +478,7 @@
 
       directLink.href = mailtoUrl;
       directLink.textContent = to;
-      status.textContent = "Opening your email app… If nothing opens, email us directly at team@growthstackservices.com.";
+      status.textContent = `Opening your email app… If nothing opens, email us directly at ${to}.`;
 
       window.location.href = mailtoUrl;
       return false;
