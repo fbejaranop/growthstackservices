@@ -436,7 +436,7 @@
         </article>
 
         <article class="panel card">
-          <form id="contact-form" class="form">
+          <form id="contact-form" class="form" onsubmit="return sendEmail(event)">
             <div class="form-two">
               <input id="name" type="text" placeholder="Name" required />
               <input id="email" type="email" placeholder="Work email" required />
@@ -458,15 +458,13 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
     const CONTACT_EMAIL = "team@growthstackservices.com";
-    const form = document.getElementById("contact-form");
     const status = document.getElementById("form-status");
     const sendButton = document.getElementById("send-button");
 
-    form.addEventListener("submit", sendEmail);
 
     async function sendEmail(event) {
       event.preventDefault();
-      const submittedForm = event.target;
+      const form = event.target;
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const company = document.getElementById("company").value.trim();
@@ -496,7 +494,7 @@
           throw new Error("Submission failed");
         }
 
-        submittedForm.reset();
+        form.reset();
         status.textContent = "Thank you. Your inquiry was sent successfully.";
       } catch (error) {
         status.textContent = `We could not send your inquiry right now. Please email ${CONTACT_EMAIL}.`;
@@ -505,6 +503,7 @@
         sendButton.textContent = "Send inquiry";
       }
 
+      return false;
     }
   </script>
 </body>
