@@ -2,308 +2,469 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>growthStackServices — Automate processes, reduce costs (live in 2–4 weeks)</title>
-  <meta name="description" content="We automate critical workflows and reduce operating costs. A paid pilot goes live in 2–4 weeks, then we keep improving it via subscription." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>growthStackServices — Tailor-made software for operational excellence</title>
+  <meta
+    name="description"
+    content="growthStackServices designs and delivers tailor-made software that improves operations, reduces risk, and scales with your business."
+  />
   <style>
-    :root{
-      --bg:#0b1020; --card:#121a33; --muted:#98a2b3; --text:#e6eaf2;
-      --brand:#7c3aed; --brand2:#22c55e; --line:#263154;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius:16px;
-      --max:1100px;
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f0f4fb;
+      --ink: #0f172a;
+      --ink-soft: #334155;
+      --muted: #64748b;
+      --line: #dbe3ef;
+      --brand: #1747a6;
+      --brand-strong: #0f2f70;
+      --accent: #0f766e;
+      --radius: 16px;
+      --shadow: 0 12px 34px rgba(15, 23, 42, 0.08);
+      --max: 1120px;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:radial-gradient(1200px 600px at 20% 0%, rgba(124,58,237,.25), transparent 60%),
-                 radial-gradient(1000px 500px at 90% 10%, rgba(34,197,94,.18), transparent 55%),
-                 var(--bg);
-      color:var(--text);
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 400px at 8% -8%, rgba(23, 71, 166, 0.12), transparent 70%),
+        radial-gradient(700px 400px at 95% 0%, rgba(15, 118, 110, 0.1), transparent 70%),
+        var(--bg);
+      line-height: 1.5;
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
-    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
-    .nav a.btn{padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
-    .hero{padding:64px 0 28px;display:grid;grid-template-columns:1.35fr .65fr;gap:28px;align-items:start}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr}}
-    h1{margin:0 0 14px;font-size:44px;line-height:1.05}
-    .sub{margin:0 0 22px;color:var(--muted);font-size:16px;max-width:64ch}
-    .cta{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      border:none; cursor:pointer; font-weight:600;
-      padding:12px 16px;border-radius:999px;
-      background:linear-gradient(135deg,var(--brand),#4f46e5);
-      color:white; box-shadow:var(--shadow);
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
     }
-    .btn.secondary{
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      box-shadow:none;
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(245, 247, 251, 0.86);
+      border-bottom: 1px solid rgba(219, 227, 239, 0.7);
     }
-    .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-    .pill{border:1px solid var(--line);color:var(--muted);padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.02);font-size:12px}
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow:var(--shadow);
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
     }
-    .kpi{display:grid;gap:12px}
-    .kpi .big{font-size:22px;font-weight:800}
-    .kpi .small{color:var(--muted);font-size:12px}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    @media (max-width: 900px){.grid3{grid-template-columns:1fr}}
-    h2{margin:40px 0 12px;font-size:26px}
-    .muted{color:var(--muted)}
-    ul{margin:10px 0 0 18px;color:var(--muted)}
-    li{margin:6px 0}
-    .section{padding:10px 0}
-    .tag{display:inline-block;font-size:12px;color:#d1d5db;border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.02)}
-    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-    @media (max-width: 900px){.process{grid-template-columns:1fr}}
-    .step h3{margin:0 0 6px;font-size:14px}
-    .step p{margin:0;color:var(--muted);font-size:13px}
-    .footer{padding:40px 0 22px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
-    .form{display:grid;gap:10px}
-    input, textarea{
-      width:100%;padding:12px 12px;border-radius:12px;border:1px solid var(--line);
-      background:rgba(0,0,0,.18);color:var(--text);outline:none;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
-    textarea{min-height:110px;resize:vertical}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width: 700px){.two{grid-template-columns:1fr}}
-    .note{font-size:12px;color:var(--muted)}
+
+    .logo-badge {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: linear-gradient(140deg, var(--brand), var(--accent));
+      box-shadow: 0 0 0 3px rgba(23, 71, 166, 0.12);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: 140ms ease;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), #2159cb);
+      box-shadow: 0 8px 18px rgba(23, 71, 166, 0.22);
+    }
+
+    .btn.primary:hover { transform: translateY(-1px); }
+
+    .btn.soft {
+      color: var(--ink-soft);
+      border-color: var(--line);
+      background: var(--surface);
+    }
+
+    .hero {
+      padding: 64px 0 34px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--brand-strong);
+      border: 1px solid #c8d9fa;
+      background: #edf3ff;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      line-height: 1.06;
+      font-size: clamp(32px, 4.6vw, 54px);
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      margin: 0 0 22px;
+      color: var(--ink-soft);
+      max-width: 64ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .mini-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-points span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #fff;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .metrics {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section { padding: 24px 0; }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 32px);
+      letter-spacing: -0.01em;
+    }
+
+    .section-sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p, .card li { color: var(--ink-soft); }
+
+    .card ul { margin: 0; padding-left: 18px; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .step-title {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: var(--brand-strong);
+      font-weight: 700;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .quote {
+      padding: 16px;
+      border-left: 3px solid #9fb9ef;
+      background: var(--surface-2);
+      color: var(--ink-soft);
+      font-size: 14px;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form { display: grid; gap: 10px; }
+
+    .form-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 11px 12px;
+      font: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    textarea { min-height: 120px; resize: vertical; }
+
+    .note { color: var(--muted); font-size: 12px; margin: 0; }
+
+    footer {
+      margin-top: 28px;
+      padding: 20px 0 34px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .contact-wrap,
+      .timeline,
+      .grid-3,
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-two { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="nav">
+  <header class="topbar">
+    <div class="wrap nav">
       <div class="logo">
-        <span class="dot"></span>
+        <span class="logo-badge"></span>
         <span>growthStackServices</span>
       </div>
-      <nav style="display:flex;gap:10px;align-items:center">
-        <a href="#offers" class="btn secondary">Offers</a>
-        <a href="#contact" class="btn secondary">Contact</a>
+      <nav class="nav-links">
+        <a href="#services" class="btn soft">Services</a>
+        <a href="#process" class="btn soft">Process</a>
+        <a href="#contact" class="btn primary">Book consultation</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div>
-          <span class="tag">Process automation + cost reduction (live in 2–4 weeks)</span>
-          <h1>Automate critical workflows. Cut operating costs.</h1>
-          <p class="sub">
-            We turn manual, error-prone processes into reliable software that integrates with your existing systems.
-            A paid pilot goes live in <b>2–4 weeks</b>. Then we keep improving and maintaining it via subscription.
-          </p>
-
-          <div class="cta">
-            <a class="btn" href="#contact">Book a call</a>
-            <a class="btn secondary" href="#how">How we work</a>
-          </div>
-
-          <div class="pillrow">
-            <span class="pill">Workflow automation</span>
-            <span class="pill">Internal tools</span>
-            <span class="pill">Integrations</span>
-            <span class="pill">Reliability built-in</span>
-            <span class="pill">AI-assisted delivery</span>
-          </div>
-        </div>
-
-        <aside class="card kpi">
-          <div>
-            <div class="big">2–4 weeks</div>
-            <div class="small">Typical pilot to production</div>
-          </div>
-          <div>
-            <div class="big">Measurable impact</div>
-            <div class="small">Hours saved, fewer errors, fewer incidents</div>
-          </div>
-          <div>
-            <div class="big">Subscription-ready</div>
-            <div class="small">Ongoing improvements + support</div>
-          </div>
-          <div>
-            <a class="btn secondary" href="#what-you-get">What you get</a>
-          </div>
-        </aside>
-      </section>
-
-      <section class="section">
-        <div class="grid3">
-          <div class="card">
-            <h3 style="margin:0 0 8px">Lower operating cost</h3>
-            <p class="muted" style="margin:0">
-              Reduce manual work, rework, and tool sprawl. Automate the steps that waste the most time.
-            </p>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 8px">Fewer mistakes & delays</h3>
-            <p class="muted" style="margin:0">
-              Standardized flows, validations, and audit trails — less “tribal knowledge”, fewer exceptions.
-            </p>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 8px">Reliable from day one</h3>
-            <p class="muted" style="margin:0">
-              Monitoring, basic security, CI/CD, and operational docs so the solution doesn’t break silently.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="how" class="section">
-        <h2>How we work</h2>
-        <p class="muted">Simple process, clear deliverables, weekly demos.</p>
-        <div class="process">
-          <div class="card step">
-            <h3>1) Quick discovery (3–5 days)</h3>
-            <p>We map the current process, identify bottlenecks, define success metrics, and lock scope.</p>
-          </div>
-          <div class="card step">
-            <h3>2) Build & ship (2–4 weeks)</h3>
-            <p>Weekly demos, production deployment, and integrations with your tools/systems.</p>
-          </div>
-          <div class="card step">
-            <h3>3) Handover</h3>
-            <p>Documentation, runbook, dashboards, and a clean transition to steady-state.</p>
-          </div>
-          <div class="card step">
-            <h3>4) Subscription</h3>
-            <p>Ongoing improvements, maintenance, and support so it stays updated and valuable.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="offers" class="section">
-        <h2>Offers</h2>
-        <div class="grid3">
-          <div class="card">
-            <h3 style="margin:0 0 6px">Discovery Sprint</h3>
-            <p class="muted" style="margin:0 0 10px">3–5 days</p>
-            <ul>
-              <li>Process map + pain points</li>
-              <li>Success metrics (time, errors, cost)</li>
-              <li>Implementation plan (2–4 weeks)</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 6px">Paid Pilot (goes live)</h3>
-            <p class="muted" style="margin:0 0 10px">2–4 weeks</p>
-            <ul>
-              <li>Automated workflow in production</li>
-              <li>Integrations + reporting</li>
-              <li>Operational checklist included</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 6px">Subscription</h3>
-            <p class="muted" style="margin:0 0 10px">Monthly / annual</p>
-            <ul>
-              <li>Continuous improvements</li>
-              <li>Maintenance + support</li>
-              <li>More automations over time</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="what-you-get" class="section">
-        <h2>What you get (plain-English “production-ready”)</h2>
-        <div class="grid3">
-          <div class="card">
-            <h3 style="margin:0 0 8px">Quality & stability</h3>
-            <ul>
-              <li>Automated tests for critical flows</li>
-              <li>CI checks to prevent regressions</li>
-              <li>Clear ownership and documentation</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 8px">Visibility & control</h3>
-            <ul>
-              <li>Dashboards + useful alerts</li>
-              <li>Audit trail where needed</li>
-              <li>Rollbacks and safe deployments</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 8px">Basic security</h3>
-            <ul>
-              <li>Authentication/authorization (as needed)</li>
-              <li>Secure secret handling</li>
-              <li>Baseline security hardening</li>
-            </ul>
-          </div>
-        </div>
-
-        <h2 style="margin-top:34px">Common use cases</h2>
-        <div class="grid3">
-          <div class="card">
-            <h3 style="margin:0 0 8px">Internal approvals</h3>
-            <p class="muted" style="margin:0">Requests → approvals → notifications → audit trail.</p>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 8px">Reconciliations & reporting</h3>
-            <p class="muted" style="margin:0">Automate monthly/weekly reports, reduce errors, save hours.</p>
-          </div>
-          <div class="card">
-            <h3 style="margin:0 0 8px">Replace expensive tools</h3>
-            <p class="muted" style="margin:0">Build a focused system that does exactly what you need (no bloat).</p>
-          </div>
-        </div>
-
-        <p class="note" style="margin-top:10px">
-          We keep scope tight so delivery stays fast and predictable.
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Tailor-made software systems for serious operations</span>
+        <h1>Build software that fits your business — not the other way around.</h1>
+        <p class="lead">
+          We design and deliver custom software for companies that need reliability, speed, and measurable business outcomes.
+          From internal tooling to complex workflow automation, we help you reduce operational friction and scale with confidence.
         </p>
-      </section>
-
-      <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p class="muted">Tell us the process you want to optimize and what it currently costs you.</p>
-
-        <div class="card">
-          <form class="form" onsubmit="return sendEmail(event)">
-            <div class="two">
-              <input id="name" type="text" placeholder="Name" required />
-              <input id="email" type="email" placeholder="Email" required />
-            </div>
-            <input id="company" type="text" placeholder="Company (optional)" />
-            <textarea id="message" placeholder="What process are you trying to optimize? (hours/week, errors, tool costs, etc.)" required></textarea>
-            <button class="btn" type="submit">Send</button>
-            <div class="note">This opens your email client. For a real form, use Formspree or Netlify Forms.</div>
-          </form>
+        <div class="hero-cta">
+          <a class="btn primary" href="#contact">Request a strategy call</a>
+          <a class="btn soft" href="#cases">See example outcomes</a>
         </div>
-      </section>
-
-      <div class="footer">
-        © <span id="year"></span> growthStackServices · Automate processes, reduce costs, ship fast.
+        <div class="mini-points">
+          <span>Senior engineering leadership</span>
+          <span>Security-conscious delivery</span>
+          <span>Clear milestones and accountability</span>
+        </div>
       </div>
-    </main>
-  </div>
+
+      <aside class="panel metrics">
+        <div class="metric">
+          <strong>2–4 weeks</strong>
+          <span>to launch an initial production module</span>
+        </div>
+        <div class="metric">
+          <strong>Tailored architecture</strong>
+          <span>built around your workflows and constraints</span>
+        </div>
+        <div class="metric">
+          <strong>Long-term partnership</strong>
+          <span>continuous delivery, support, and optimization</span>
+        </div>
+        <a href="#contact" class="btn soft">Discuss your requirements</a>
+      </aside>
+    </section>
+
+    <section id="services" class="section">
+      <h2>What we deliver</h2>
+      <p class="section-sub">Professional software engagements focused on business value, technical quality, and operational resilience.</p>
+      <div class="grid-3">
+        <article class="panel card">
+          <h3>Custom business software</h3>
+          <p>Purpose-built web platforms, internal systems, and portals designed around your exact processes.</p>
+        </article>
+        <article class="panel card">
+          <h3>Workflow automation</h3>
+          <p>Automate repetitive tasks, enforce standards, and eliminate bottlenecks across teams and tools.</p>
+        </article>
+        <article class="panel card">
+          <h3>Integrations & modernization</h3>
+          <p>Connect legacy and modern systems with robust APIs, clean data flow, and maintainable architecture.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <h2>Our delivery process</h2>
+      <p class="section-sub">Transparent execution with defined scope, weekly progress visibility, and production-grade standards.</p>
+      <div class="timeline">
+        <article class="panel card">
+          <p class="step-title">1. Discovery & planning</p>
+          <p>Stakeholder interviews, process mapping, and an implementation roadmap with milestones.</p>
+        </article>
+        <article class="panel card">
+          <p class="step-title">2. Design & architecture</p>
+          <p>UX direction, technical blueprint, and security baseline aligned to your operational goals.</p>
+        </article>
+        <article class="panel card">
+          <p class="step-title">3. Build & deploy</p>
+          <p>Incremental releases, QA gates, and production rollout with observability and documentation.</p>
+        </article>
+        <article class="panel card">
+          <p class="step-title">4. Support & scale</p>
+          <p>Continuous improvement, feature expansion, and maintenance as your needs evolve.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="cases" class="section">
+      <h2>Example business outcomes</h2>
+      <p class="section-sub">Representative use cases where tailor-made software creates measurable operational impact.</p>
+      <div class="case-grid">
+        <article class="panel card">
+          <h3>Operations automation platform</h3>
+          <ul>
+            <li>Replaced fragmented spreadsheets and manual handoffs.</li>
+            <li>Introduced approval workflows with full traceability.</li>
+            <li>Reduced turnaround time and administrative overhead.</li>
+          </ul>
+        </article>
+        <article class="panel card">
+          <h3>Executive reporting suite</h3>
+          <ul>
+            <li>Unified data from finance, CRM, and operations systems.</li>
+            <li>Automated weekly reports and performance dashboards.</li>
+            <li>Improved decision speed through consistent metrics.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="quote">"Your team finally has software that matches how your business actually operates."</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Let’s discuss your software initiative</h2>
+      <p class="section-sub">Share your current bottlenecks and desired outcomes. We will respond with a focused next-step proposal.</p>
+      <div class="contact-wrap">
+        <article class="panel card">
+          <h3>What to include</h3>
+          <ul>
+            <li>Current process and where delays occur.</li>
+            <li>Systems involved (ERP, CRM, internal tools, etc.).</li>
+            <li>Business impact: cost, time, quality, or risk.</li>
+          </ul>
+        </article>
+
+        <article class="panel card">
+          <form class="form" onsubmit="return sendEmail(event)">
+            <div class="form-two">
+              <input id="name" type="text" placeholder="Name" required />
+              <input id="email" type="email" placeholder="Work email" required />
+            </div>
+            <input id="company" type="text" placeholder="Company" />
+            <textarea id="message" placeholder="Briefly describe the process or system you want to improve." required></textarea>
+            <button type="submit" class="btn primary">Send inquiry</button>
+            <p class="note">This opens your email client. Replace the email address in code to receive submissions.</p>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> growthStackServices · Tailor-made software for professional teams.
+    </footer>
+  </main>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    function sendEmail(e){
-      e.preventDefault();
+    function sendEmail(event) {
+      event.preventDefault();
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const company = document.getElementById("company").value.trim();
       const message = document.getElementById("message").value.trim();
 
+      const to = "your-email@domain.com";
       const subject = encodeURIComponent("New inquiry — growthStackServices");
       const body = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}\n`
       );
 
-      // Replace with your email
-      const to = "your-email@domain.com";
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       return false;
     }
