@@ -436,15 +436,14 @@
         </article>
 
         <article class="panel card">
-          <form class="form" onsubmit="return sendEmail(event)">
+          <form id="contact-form" class="form" onsubmit="return sendEmail(event)">
             <div class="form-two">
               <input id="name" type="text" placeholder="Name" required />
               <input id="email" type="email" placeholder="Work email" required />
             </div>
             <input id="company" type="text" placeholder="Company" />
             <textarea id="message" placeholder="Briefly describe the process or system you want to improve." required></textarea>
-            <button type="submit" class="btn primary">Send inquiry</button>
-            <p class="note">Prefer direct email? Reach us at <a id="direct-email-link" href="mailto:team@growthstackservices.com">team@growthstackservices.com</a>.</p>
+            <button id="send-button" type="submit" class="btn primary">Send inquiry</button>
             <p id="form-status" class="note" aria-live="polite"></p>
           </form>
         </article>
@@ -458,33 +457,51 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
     const CONTACT_EMAIL = "team@growthstackservices.com";
-    const directLink = document.getElementById("direct-email-link");
-    directLink.href = `mailto:${CONTACT_EMAIL}`;
-    directLink.textContent = CONTACT_EMAIL;
+    const status = document.getElementById("form-status");
+    const sendButton = document.getElementById("send-button");
 
-    function sendEmail(event) {
+    async function sendEmail(event) {
       event.preventDefault();
+      const form = event.target;
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const company = document.getElementById("company").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      const to = CONTACT_EMAIL;
-      const subject = encodeURIComponent("New inquiry — growthStackServices");
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}\n`
-      );
+      status.textContent = "Sending your inquiry...";
+      sendButton.disabled = true;
+      sendButton.textContent = "Sending...";
 
-      const mailtoUrl = `mailto:${to}?subject=${subject}&body=${body}`;
-      const status = document.getElementById("form-status");
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            company,
+            message,
+            _subject: "New inquiry — growthStackServices"
+          })
+        });
 
-      directLink.href = mailtoUrl;
-      directLink.textContent = to;
-      status.textContent = `Opening your email app… If nothing opens, email us directly at ${to}.`;
+        if (!response.ok) {
+          throw new Error("Submission failed");
+        }
 
-      window.location.href = mailtoUrl;
+        form.reset();
+        status.textContent = "Thank you. Your inquiry was sent successfully.";
+      } catch (error) {
+        status.textContent = `We could not send your inquiry right now. Please email ${CONTACT_EMAIL}.`;
+      } finally {
+        sendButton.disabled = false;
+        sendButton.textContent = "Send inquiry";
+      }
+
       return false;
     }
   </script>
